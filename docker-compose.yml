@@ -1,0 +1,15 @@
+version: '3'
+services:
+  tracker:
+    image: ypzhuang/tracker 
+    network_mode: host
+    volumes:
+      - ./data/tracker:/home/dfs
+  storage:
+    image: ypzhuang/storage
+    network_mode: host
+    volumes:
+      - ./data/storage:/home/dfs
+    environment:
+      - TRACKER_SERVER=192.168.66.10:22122
+

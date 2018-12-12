@@ -1,0 +1,40 @@
+version: '3.5'
+services:
+  tracker:
+    image: ypzhuang/tracker
+    volumes:
+     - tracker:/home/dfs 
+    networks:
+      hostnet: {}
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 30s
+      placement:
+        constraints:
+          - node.role == manager
+  storage:
+    image: ypzhuang/storage
+    volumes:
+      - storage:/home/dfs
+    networks:
+      hostnet: {}
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+        delay: 30s
+    environment:
+      - TRACKER_SERVER=192.168.66.10:22122
+
+networks:
+  hostnet:
+    external: true
+    name: host
+
+volumes:
+  tracker:
+    driver: local
+  storage:
+    driver: local
