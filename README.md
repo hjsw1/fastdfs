@@ -19,17 +19,17 @@ Nginx and Storage on the same server.
 
 ### Run tracker with host network mode
 ```
-docker run  -d  --network=host  tracker
+docker run  -d  --network=host  ypzhuang/tracker
 ```
 
 ### Run storage with host network mode , suppose the tracker host ip is 192.168.66.10
 ```
-docker run  -d  --network=host  -e TRACKER_SERVER=192.168.66.10:22122 storage
+docker run  -d  --network=host  -e TRACKER_SERVER=192.168.66.10:22122 ypzhuang/storage
 ```
 
 ### Monitor fastdfs servers
 ```
-docker run  --rm  -e TRACKER_SERVER=192.168.66.10:22122 monitor
+docker run  --rm  -e TRACKER_SERVER=192.168.66.10:22122 ypzhuang/monitor
 ```
 
 
@@ -43,7 +43,7 @@ docker-compose -f docker-compose.yml up -d
 docker stack deploy -c docker-cloud.yml fastdfs
 ```
 
-## How to using the pictures that have uploaded the fastdfs server.
+## How to using the pictures that have uploaded to  fastdfs servers.
 
 * Orinial image,suppose the store server is 192.168.66.10:
 http://192.168.66.10:8888/group1/M00/00/00/wKhCClwRhl-AT_y8AAGt_FFM2T4145.jpg
